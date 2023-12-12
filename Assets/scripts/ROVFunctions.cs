@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.VFX;
 
@@ -26,6 +27,7 @@ public class ROVFunctions : MonoBehaviour
     private Rigidbody rb;
 
     private bool bhasSpawnedParticleSystem = false;
+    private bool bIsLightOn = true;
 
     private void Start()
     {
@@ -152,6 +154,10 @@ public class ROVFunctions : MonoBehaviour
         {
             promptText.gameObject.SetActive(isCloseToAnyObject);
         }
+        if(promptText && Input.GetKeyDown(KeyCode.Tab))
+        {
+            SceneManager.LoadScene("Menu");
+        }
     }
 
     void ToggleLight() // Turns the light component on or off
@@ -159,6 +165,7 @@ public class ROVFunctions : MonoBehaviour
         if (targetLight != null)
         {
             targetLight.enabled = !targetLight.enabled; // Toggle the light's state
+            bIsLightOn = !bIsLightOn;
         }
         else
         {
